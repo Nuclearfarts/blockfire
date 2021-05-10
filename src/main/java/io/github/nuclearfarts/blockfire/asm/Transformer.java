@@ -1,4 +1,4 @@
-package io.github.nuclearfarts.examplemod.asm;
+package io.github.nuclearfarts.blockfire.asm;
 
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.common.ForgeVersion;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class Transformer implements IFMLLoadingPlugin {
 	public Transformer() {
 		MixinBootstrap.init();
-		Mixins.addConfiguration("examplemod.mixins.json");
+		Mixins.addConfiguration("blockfire.mixins.json");
 	}
 	
 	/**

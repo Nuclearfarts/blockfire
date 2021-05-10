@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "io.github.nuclearfarts.blockfire.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "blockfire.refmap.json",
+	"mixins": [
+		"EntityLivingBaseMixin",
+		"EntityMixin",
+		"WorldMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"minVersion": "0.8"
+}
