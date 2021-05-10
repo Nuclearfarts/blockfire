@@ -16,17 +16,13 @@ public class EntityLivingBaseMixin extends EntityMixin {
 	@Inject(method = "attackEntityFrom(Lnet/minecraft/util/DamageSource;F)Z",
 			at = @At(value = "INVOKE", target = "net/minecraft/entity/EntityLivingBase.damageShield(F)V"))
 	private void onShieldBlock(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
-		if(!((Entity) (Object) this).world.isRemote) {
-			System.out.println("Blocked " + source);
-			if(BlockFireMod.blockFireFromSource(source)) {
-				System.out.println("Projectile");
-				Entity e = source.getImmediateSource();
-				if(e != null) {
-					EntityTick et = new EntityTick(e, e.ticksExisted);
-					blockfire$blockedEntityTick = et;
-					if(et.equals(blockfire$cancelFireOnBlock)) {
-						blockfire$directlySetFire(blockfire$prevFire);
-					}
+		if(BlockFireMod.blockFireFromSource(source)) {
+			Entity e = source.getImmediateSource();
+			if(e != null) {
+				EntityTick et = new EntityTick(e, e.ticksExisted);
+				blockfire$blockedEntityTick = et;
+				if(et.equals(blockfire$cancelFireOnBlock)) {
+					blockfire$directlySetFire(blockfire$prevFire);
 				}
 			}
 		}
