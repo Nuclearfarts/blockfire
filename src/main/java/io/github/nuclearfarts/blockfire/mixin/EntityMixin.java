@@ -21,7 +21,7 @@ public class EntityMixin {
 	protected EntityTick blockfire$blockedEntityTick;
 	protected EntityTick blockfire$cancelFireOnBlock;
 	
-	@Inject(method = "setFire(I)V", at = @At(value = "FIELD", target = "fire:I", opcode = Opcodes.PUTFIELD), cancellable = true)
+	@Inject(method = "setFire(I)V", at = @At(value = "FIELD", target = "net/minecraft/entity/Entity.fire:I", opcode = Opcodes.PUTFIELD), cancellable = true)
 	private void captureFireSet(CallbackInfo info) {
 		World world = ((Entity) (Object) this).world;
 		WorldExt worldExt = (WorldExt) world;
@@ -30,7 +30,7 @@ public class EntityMixin {
 			info.cancel();
 			return;
 		}
-		if(BlockFireMod.isEntityProjectile(worldExt.blockfire$getTickingEntity())) {
+		if(BlockFireMod.blockFireFromEntity(worldExt.blockfire$getTickingEntity())) {
 			blockfire$cancelFireOnBlock = t;
 		}
 		blockfire$prevFire = fire;
