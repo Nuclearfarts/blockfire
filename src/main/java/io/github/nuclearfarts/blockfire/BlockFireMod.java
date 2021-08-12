@@ -24,6 +24,7 @@ public class BlockFireMod {
 	public void preInit(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		configEntities = config.get("misc", "EntitiesToBlockFireFrom", new String[] {"minecraft:arrow"}, "Entities which, when blocked, should have any fire effects they applied (or will apply) this tick cancelled.").getStringList();
+		config.save();
 	}
 	
 	@EventHandler
